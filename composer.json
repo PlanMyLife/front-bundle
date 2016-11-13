@@ -1,0 +1,30 @@
+{
+  "name" : "PlanMyLife/frontbundle",
+  "description" : "This bundle generate the front with gulp",
+  "type" : "symfony-bundle",
+  "authors" : [{
+    "name" : "Maxime Hersand - Plan My Life",
+    "email" : "planmylife.io@gmail.com"
+  }],
+  "keywords" : [
+    "front bundle gulp compilator assetic"
+  ],
+  "license" : [
+    "MIT"
+  ],
+  "require" : {
+  },
+  "autoload" : {
+    "psr-0" : {
+      "PlanMyLife\\FrontBundle" : ""
+    }
+  },
+  "target-dir" : "PlanMyLife/FrontBundle",
+  "repositories" : [{
+  }],
+  "extra" : {
+    "branch-alias" : {
+      "dev-master" : "master"
+    }
+  }
+}
