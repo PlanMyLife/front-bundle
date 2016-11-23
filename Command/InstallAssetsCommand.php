@@ -38,6 +38,11 @@ class InstallAssetsCommand extends ContainerAwareCommand
         }
 
         $bundles = $container->getParameter('pml_front_generator.path');
+
+        if( strpos(shell_exec('bundle check'), 'Install missing gems with `bundle install') ) {
+            $output->writeln( 'Les dépendandes ruby ne sont pas à jour, execution de bundle install' );
+            $output->writeln( shell_exec('bundle install --path=.vendor/bundles') );
+        }
     }
 
     private function command_exist($cmd) {
