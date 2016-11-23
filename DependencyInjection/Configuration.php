@@ -18,8 +18,18 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('plan_my_life_front');
+        $rootNode = $treeBuilder->root('pml_front_generator');
 
+        $rootNode
+            ->children()
+                ->scalarNode('engine')->end()
+                ->arrayNode('path')
+                    ->prototype('array')
+                        ->children()
+                            ->scalarNode('src')->end()
+                    ->end()
+                ->end()
+            ->end();
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for
         // more information on that topic.
@@ -27,3 +37,4 @@ class Configuration implements ConfigurationInterface
         return $treeBuilder;
     }
 }
+

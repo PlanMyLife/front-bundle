@@ -1,11 +1,11 @@
 <?php
 namespace PlanMyLife\FrontBundle\Command;
 
-use Symfony\Component\Console\Command\Command;
+use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class InstallAssetsCommand extends Command
+class InstallAssetsCommand extends ContainerAwareCommand
 {
     protected function configure() {
         $this
@@ -22,6 +22,12 @@ class InstallAssetsCommand extends Command
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) {
+        $container = $this->getContainer();
+
+        if( !$container->hasParameter('pml_front_generator.path') ) {
+            return $output->writeln( 'Vous devez définir les dossiers à compiler dans le config.yml' );
+        }
+
         //CHECK BUNDLER
         if( !$this->command_exist('bundle') ) {
             return $output->writeln( 'Attention, bundle(http://bundler.io/) est requis pour ce projet.' );
@@ -30,6 +36,8 @@ class InstallAssetsCommand extends Command
         if( !$this->command_exist('npm') ) {
             return $output->writeln( 'Attention, npm(https://www.npmjs.com/) est requis pour ce projet.' );
         }
+
+        $bundles = $container->getParameter('pml_front_generator.path');
     }
 
     private function command_exist($cmd) {
