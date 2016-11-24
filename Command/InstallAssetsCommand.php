@@ -37,12 +37,22 @@ class InstallAssetsCommand extends ContainerAwareCommand
             return $output->writeln( 'Attention, npm(https://www.npmjs.com/) est requis pour ce projet.' );
         }
 
-        $bundles = $container->getParameter('pml_front_generator.path');
-
         if( strpos(shell_exec('bundle check'), 'Install missing gems with `bundle install') ) {
             $output->writeln( 'Les dépendandes ruby ne sont pas à jour, execution de bundle install' );
-            $output->writeln( shell_exec('bundle install --path=.vendor/bundles') );
+            $output->writeln( passthru('bundle install --path=../.vendor/bundles') );
         }
+
+        //$output->writeln( passthru('npm install') );
+
+        $bundles = $container->getParameter('pml_front_generator.path');
+
+        $task = '';
+        foreach ( $bundles as $bundle ) {
+            $task .= ' --path ' . $bundle['src'];
+        }
+        //$bundles = implode(' ', $bundles);
+
+        $output->writeln( passthru('gulp build' . $task) );
     }
 
     private function command_exist($cmd) {
