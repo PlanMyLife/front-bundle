@@ -1,5 +1,5 @@
 {
-  "name" : "planmylife/frontbundle",
+  "name" : "planmylife/front-bundle",
   "description" : "This bundle generate the front with gulp",
   "homepage": "https://git.planmylife.io/planmylife/front-bundle",
   "keywords" : [
