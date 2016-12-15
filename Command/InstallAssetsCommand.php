@@ -42,6 +42,9 @@ class InstallAssetsCommand extends ContainerAwareCommand
             passthru('bundle install --path=../.vendor/bundles');
         }
 
+        $output->writeln( 'Clean de l\'existant' );
+        passthru('gulp clean');
+
         $bundles = $container->getParameter('pml_front_generator.path');
 
         foreach ( $bundles as $bundle ) {
