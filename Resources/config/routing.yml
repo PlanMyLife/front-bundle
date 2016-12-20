@@ -1,3 +1,0 @@
-plan_my_life_front_reminder:
-    path:     /front-reminder
-    defaults: { _controller: PlanMyLifeFrontBundle:Reminder:index }

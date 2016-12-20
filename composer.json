@@ -16,7 +16,9 @@
     "email" : "mhersand@planmylife.io"
   }],
   "require" : {
-      "php": "^5.4|^7.0"
+      "php": "^5.4|^7.0",
+    "symfony/console": "^3.2",
+    "symfony/symfony": "^3.2"
   },
   "autoload" : {
     "psr-4" : {
