@@ -49,6 +49,7 @@ class InstallAssetsCommand extends ContainerAwareCommand
 
         foreach ( $bundles as $bundle ) {
             $task = ' --path ' . $bundle['src'];
+            $task .= ' --name ' . $bundle['name'];
             passthru('gulp build' . $task);
         }
     }
