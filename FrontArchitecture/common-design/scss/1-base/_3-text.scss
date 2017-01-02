@@ -1,0 +1,45 @@
+.text {
+  &-small {
+    font-size: em($text-small);
+  }
+
+  &-big {
+    font-size: em($text-big);
+  }
+
+  &-extra-big {
+    font-size: em($text-extra-big);
+  }
+
+  &-uppercase {
+    text-transform: uppercase;
+  }
+
+  &-left {
+    text-align: left;
+  }
+
+  &-center {
+    text-align: center;
+  }
+
+  &-right {
+    text-align: right;
+  }
+}
+
+p {
+  &.text {
+    &-small {
+      @include paragraph(1, $text-small);
+    }
+
+    &-big {
+      @include paragraph(1, $text-big);
+    }
+
+    &-extra-big {
+      @include paragraph(1, $text-extra-big);
+    }
+  }
+}

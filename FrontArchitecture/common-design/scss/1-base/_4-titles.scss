@@ -1,0 +1,23 @@
+h1,
+.h1{
+  font-size: em($h1-fs);
+  @include paragraph(1, $h1-fs);
+  font-weight: 700;
+  position: relative;
+}
+
+h2,
+.h2 {
+  font-size: em($h2-fs);
+  @include paragraph(1, $h2-fs);
+  font-weight: 700;
+  position: relative;
+}
+
+h3,
+.h3 {
+  font-size: em($h3-fs);
+  @include paragraph(1, $h3-fs);
+  font-weight: 700;
+  position: relative;
+}

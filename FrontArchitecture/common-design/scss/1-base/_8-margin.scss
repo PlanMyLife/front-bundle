@@ -1,0 +1,9 @@
+.no-margin,
+p.no-margin {
+  margin-bottom: 0;
+}
+
+.margin-half,
+p.margin-half {
+  @include paragraph(0.5);
+}

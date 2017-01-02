@@ -1,0 +1,8 @@
+source 'https://rubygems.org'
+
+gem 'compass',   '1.0.3'  # Compass
+gem 'sass',      '3.4.18' # Sass, évite les mauvaises surprises
+gem 'oily_png',  '1.2.0'  # OilyPNG, accélère la création des sprites
+#gem 'sass-globbing', '~> 1.1.0' # Sass globbing permet l'appel de plusieurs fichiers
+gem 'sass-globbing-pr-20', '~> 1.1.2' # En attendant que la PR 20 soit intégrée
+gem 'scss_lint', '0.44.0'

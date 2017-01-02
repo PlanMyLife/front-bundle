@@ -1,0 +1,25 @@
+.btn,
+button,
+.button {
+  font-size: em($btn);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: em($btn-height, $btn);
+  font-weight: 700;
+  border-radius: 20px;
+  border: 0;
+  appearance: none;
+  padding: 0 em($grid-gutter-width / 2, $btn);
+  position: relative;
+
+  svg {
+    width: em(25px, $btn);
+    height: em(25px, $btn);
+  }
+
+  span + svg,
+  svg  + span {
+    margin-left: em($grid-gutter-width / 2, $btn);
+  }
+}

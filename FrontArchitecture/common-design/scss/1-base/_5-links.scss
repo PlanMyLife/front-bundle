@@ -1,0 +1,9 @@
+.link {
+  &-roll {
+    @include deco-roll;
+  }
+
+  &-unroll {
+    @include deco-unroll;
+  }
+}

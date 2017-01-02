@@ -1,0 +1,190 @@
+html {
+  color: $text;
+
+  // scss-lint:disable VendorPrefix
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-size: em($base-font-size, 16px);
+}
+
+* {
+  // scss-lint:disable VendorPrefix
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+::selection {
+  @include text-shadow(none);
+  background: $black;
+  color: $white;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  font-size: em($base-font-size);
+  line-height: 1.2;
+  position: relative;
+
+  &.no-scroll {
+    overflow: hidden;
+    height: 100%;
+  }
+}
+
+/*
+# États des liens
+*/
+
+a {
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+
+  &:focus {
+    outline: none;
+  }
+  /*
+  &:visited
+  {
+
+  }*/
+}
+
+/* # Marges par défaut */
+
+p,
+table,
+dl,
+ul,
+ol,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr {
+  margin-top: 0;
+}
+
+/*
+Note : pas de marge basse lors des imbrications.
+*/
+
+ul,
+ol,
+dl {
+  list-style: none;
+  margin-bottom: em($base-line-height);
+  padding: 0;
+
+  li {
+    position: relative;
+  }
+
+  ul,
+  ol,
+  dl {
+    padding-top: em($base-line-height / 2);
+    margin-bottom: 0;
+  }
+}
+
+li {
+  position: relative;
+  padding-bottom: em($base-line-height / 2);
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+
+  @include mq($from: tablet) {
+    padding-left: rem(40px);
+  }
+
+  @include mq($until: tablet) {
+    padding-left: rem(30px);
+  }
+}
+
+ol {
+  counter-reset: section;
+
+  li {
+    &::before {
+      counter-increment: section;
+      content: counters(section, ".") ")";
+      display: inline-block;
+      text-align: center;
+      box-sizing: border-box;
+
+      @include mq($from: tablet) {
+        width: rem(40px);
+        margin-left: rem(-40px);
+      }
+
+      @include mq($until: tablet) {
+        width: rem(30px);
+        margin-left: rem(-30px);
+      }
+    }
+  }
+}
+
+p {
+  @include paragraph;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  margin: 0;
+  /*
+    font: inherit;
+    color: inherit;
+  */
+}
+
+@include no-js {
+  .no-js-visible {
+    display: none;
+  }
+}
+
+img,
+svg,
+object,
+video,
+audio,
+canvas,
+iframe {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+svg {
+  fill: currentColor;
+}
+
+figure {
+  display: block;
+  margin: 0;
+}
+
+.clearfix {
+  @include clearfix;
+}
