@@ -1,0 +1,10 @@
+@charset "utf-8";
+
+$lte-ie8: false !default;
+
+$mq-responsive: not $lte-ie8 !default;
+
+$is-rem:     not $lte-ie8 !default;
+$is-flexbox: not $lte-ie8 !default;
+
+@import 'config';

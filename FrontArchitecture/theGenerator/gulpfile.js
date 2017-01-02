@@ -32,10 +32,10 @@ var path = require( 'path' ),
 	argv = require('yargs').argv;
 
 //Name
-var name = 'icons';
+var name = 'main';
 
 // Variables de chemins
-var source = 'src/PlanMyLife/MainBundle/Resources/'; // dossier de travail
+var source = 'src/'; // dossier de travail
 var destination = 'web/'; // dossier à livrer
 
 var ENV = {
