@@ -45,16 +45,50 @@ class FrontContentGeneratorExtension extends \Twig_Extension
         );
     }
 
-    public function fake_contribution($long = false, $titleScope = [2, 6])
+    /**
+     * @param bool $long
+     * @param array $titleScope
+     * @return string
+     */
+    public function fake_contribution($long = false, $titleScope = [1, 6])
     {
         $contribution = '';
 
-        foreach ($titleScope as $titleLevel) {
-            $contribution .= $this->frontElements->title( 'H' . $titleLevel . ' - ' .$this->fakerGenerator->words(50, 150), $titleLevel );
-            $contribution .= $this->fakerGenerator->words(100, 300);
+        for ($i = $titleScope[0]; $i <= $titleScope[1]; $i++) {
+            $contribution .= $this->frontElements->title( 'H' . $i . ' - ' .$this->fakerGenerator->words(50, 150), $i );
+
+            $contribution .= '<p>' . $this->fakerGenerator->words(100, 200) . '</p>';
+
+            $nextParagraph = [];
+
+            array_push($nextParagraph, $this->fakerGenerator->words(30, 100));
+
+            if(rand(1, 100) > 50) {
+                array_push($nextParagraph, '<strong>' . $this->fakerGenerator->words(30, 100) . '</strong>');
+                array_push($nextParagraph, $this->fakerGenerator->words(30, 100));
+            }
+
+            if(rand(1, 100) > 50) {
+                array_push($nextParagraph, '<i>' . $this->fakerGenerator->words(30, 100) . '</i>');
+                array_push($nextParagraph, $this->fakerGenerator->words(30, 100));
+            }
+
+            if(rand(1, 100) > 50) {
+                array_push($nextParagraph, $this->frontElements->link('#', $this->fakerGenerator->words(30, 100)));
+                array_push($nextParagraph, $this->fakerGenerator->words(30, 100));
+            }
+
+            $contribution .= '<p>';
+            $contribution .= implode(' ', $nextParagraph);
+            $contribution .= '</p>';
         }
 
-        $contribution = $this->fakerGenerator->words(50, 100);
+        $contribution .= '<p>';
+        $contribution .= $this->frontElements->button('#', $this->fakerGenerator->words(20, 50));
+        $contribution .= $this->frontElements->button('#', $this->fakerGenerator->words(20, 50));
+        $contribution .= '</p>';
+
+        $contribution .= $this->fakerGenerator->words(50, 100);
 
         return $contribution;
     }
