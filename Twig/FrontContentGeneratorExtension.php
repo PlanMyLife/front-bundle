@@ -7,12 +7,17 @@ use Faker;
 class FrontContentGeneratorExtension extends PlanMyLifeExtension
 {
     /**
+     * @var WordsGeneratorExtension
+     */
+    private $wordsGenerator;
+
+    /**
      * FrontContentGeneratorExtension constructor.
-     * @param $wordsGenerator
+     * @param WordsGeneratorExtension $wordsGenerator
      */
     public function __construct($wordsGenerator)
     {
-        $this->$wordsGenerator = $wordsGenerator;
+        $this->wordsGenerator = $wordsGenerator;
     }
 
     /**
@@ -33,8 +38,8 @@ class FrontContentGeneratorExtension extends PlanMyLifeExtension
         );
     }
 
-    public function fake_contribution($long = false)
+    public function fake_contribution($long = falsef)
     {
-
+        return $this->wordsGenerator->words(50, 100);
     }
 }
