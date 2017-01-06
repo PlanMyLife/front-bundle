@@ -16,7 +16,9 @@
     "email" : "mhersand@planmylife.io"
   }],
   "require" : {
-      "php": "^5.4|^7.0",
+    "php": "^5.4|^7.0",
+    "twig/extensions": "~1.0",
+    "fzaninotto/faker": "^1.6",
     "symfony/console": "^3.2",
     "symfony/symfony": "^3.2"
   },
