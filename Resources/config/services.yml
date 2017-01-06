@@ -1,0 +1,13 @@
+services:
+    app.words_twig_extension:
+        class: PlanMyLife\FrontBundle\Twig\WordsGeneratorExtension
+        public: false
+        tags:
+            - { name: twig.extension }
+
+    app.front_twig_extension:
+            class: PlanMyLife\FrontBundle\Twig\FrontContentGeneratorExtension
+            arguments: [ '@app.words_twig_extension' ]
+            public: false
+            tags:
+                - { name: twig.extension }
