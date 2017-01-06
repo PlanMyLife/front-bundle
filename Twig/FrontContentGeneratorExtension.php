@@ -90,6 +90,16 @@ class FrontContentGeneratorExtension extends \Twig_Extension
 
         $contribution .= $this->fakerGenerator->words(50, 100);
 
+        $contribution .= $this->frontElements->quotation($this->fakerGenerator->words(50, 150), $this->fakerGenerator->name());
+
+        $liste = [];
+        for ($i = 0; $i < rand(3, 6); $i++) {
+            array_push($liste, $this->fakerGenerator->words(50, 100));
+        }
+
+        $contribution .= $this->frontElements->liste('ul', $liste);
+        $contribution .= $this->frontElements->liste('ol', $liste);
+
         return $contribution;
     }
 }

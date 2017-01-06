@@ -51,7 +51,7 @@ class FakerGeneratorExtension extends \Twig_Extension
      * @param $lang
      * @return string
      */
-    public function name($lang)
+    public function name($lang = 'fr_FR')
     {
         return $this->faker($lang)->firstName() . ' ' . $this->faker($lang)->lastName();
     }
@@ -60,7 +60,7 @@ class FakerGeneratorExtension extends \Twig_Extension
      * @param $lang
      * @return string
      */
-    public function address($lang)
+    public function address($lang = 'fr_FR')
     {
         return $this->faker($lang)->country() . ', ' . $this->faker($lang)->city();
     }
@@ -69,7 +69,7 @@ class FakerGeneratorExtension extends \Twig_Extension
      * @param $lang
      * @return string
      */
-    public function country($lang)
+    public function country($lang = 'fr_FR')
     {
         return $this->faker($lang)->country();
     }
@@ -78,7 +78,7 @@ class FakerGeneratorExtension extends \Twig_Extension
      * @param $lang
      * @return string
      */
-    public function city($lang)
+    public function city($lang = 'fr_FR')
     {
         return $this->faker($lang)->city();
     }
