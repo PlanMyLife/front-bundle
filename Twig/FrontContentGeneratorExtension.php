@@ -4,20 +4,27 @@ namespace PlanMyLife\FrontBundle\Twig;
 
 use Faker;
 
-class FrontContentGeneratorExtension extends PlanMyLifeExtension
+class FrontContentGeneratorExtension extends \Twig_Extension
 {
     /**
-     * @var WordsGeneratorExtension
+     * @var FakerGeneratorExtension
      */
-    private $wordsGenerator;
+    private $fakerGenerator;
+
+    /**
+     * @var FrontElementsExtension
+     */
+    private $frontElements;
 
     /**
      * FrontContentGeneratorExtension constructor.
-     * @param WordsGeneratorExtension $wordsGenerator
+     * @param FakerGeneratorExtension $wordsGenerator
+     * @param FrontElementsExtension $frontElements
      */
-    public function __construct($wordsGenerator)
+    public function __construct($wordsGenerator, $frontElements)
     {
-        $this->wordsGenerator = $wordsGenerator;
+        $this->fakerGenerator = $wordsGenerator;
+        $this->frontElements = $frontElements;
     }
 
     /**
@@ -33,13 +40,22 @@ class FrontContentGeneratorExtension extends PlanMyLifeExtension
      */
     public function getFunctions()
     {
-        return array(
-            new \Twig_SimpleFunction('fake_contribution', array($this, 'fake_contribution'))
+        return array (
+            new \Twig_SimpleFunction('fake_contribution', array($this, 'fake_contribution')),
         );
     }
 
-    public function fake_contribution($long = falsef)
+    public function fake_contribution($long = false, $titleScope = [2, 6])
     {
-        return $this->wordsGenerator->words(50, 100);
+        $contribution = '';
+
+        foreach ($titleScope as $titleLevel) {
+            $contribution .= $this->frontElements->title( 'H' . $titleLevel . ' - ' .$this->fakerGenerator->words(50, 150), $titleLevel );
+            $contribution .= $this->fakerGenerator->words(100, 300);
+        }
+
+        $contribution = $this->fakerGenerator->words(50, 100);
+
+        return $contribution;
     }
 }

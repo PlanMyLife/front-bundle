@@ -25,8 +25,8 @@ class PlanMyLifeFrontExtension extends Extension
         $container->setParameter('pml_front_generator.engine', $config['engine']);
         $container->setParameter('pml_front_generator.path', $config['path']);
 
-        /*$loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('services.yml');*/
+        $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('services.yml');
     }
 
     /**

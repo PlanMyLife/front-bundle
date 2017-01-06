@@ -4,8 +4,13 @@ namespace PlanMyLife\FrontBundle\Twig;
 
 use Faker;
 
-class WordsGeneratorExtension extends PlanMyLifeExtension
+class FakerGeneratorExtension extends \Twig_Extension
 {
+    /**
+     * @var array
+     */
+    private $fakers = array();
+
     /**
      * {@inheritdoc}
      */
@@ -87,5 +92,22 @@ class WordsGeneratorExtension extends PlanMyLifeExtension
     public function images($width, $height, $theme = 'cats')
     {
         return $this->faker()->imageUrl($width, $height, $theme);
+    }
+
+    /**
+     * @param null $lang
+     * @return mixed
+     */
+    protected function faker($lang = null)
+    {
+        if (!$lang) {
+            $lang = Faker\Factory::DEFAULT_LOCALE;
+        }
+
+        if (!isset($this->fakers[$lang])) {
+            $this->fakers[$lang] = Faker\Factory::create($lang);
+        }
+
+        return $this->fakers[$lang];
     }
 }

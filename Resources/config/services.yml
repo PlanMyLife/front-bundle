@@ -1,13 +1,19 @@
 services:
-    app.words_twig_extension:
-        class: PlanMyLife\FrontBundle\Twig\WordsGeneratorExtension
+    app.faker_twig_extension:
+        class: PlanMyLife\FrontBundle\Twig\FakerGeneratorExtension
+        public: false
+        tags:
+            - { name: twig.extension }
+
+    app.front_element_twig_extension:
+        class: PlanMyLife\FrontBundle\Twig\FrontElementsExtension
         public: false
         tags:
             - { name: twig.extension }
 
     app.front_twig_extension:
             class: PlanMyLife\FrontBundle\Twig\FrontContentGeneratorExtension
-            arguments: [ '@app.words_twig_extension' ]
+            arguments: [ '@app.faker_twig_extension', '@app.front_element_twig_extension' ]
             public: false
             tags:
                 - { name: twig.extension }
