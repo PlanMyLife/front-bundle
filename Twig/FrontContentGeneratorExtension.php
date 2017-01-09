@@ -100,6 +100,36 @@ class FrontContentGeneratorExtension extends \Twig_Extension
         $contribution .= $this->frontElements->liste('ul', $liste);
         $contribution .= $this->frontElements->liste('ol', $liste);
 
+        $contribution .= $this->frontElements->accordion($this->fakerGenerator->words(30, 100), $this->fakerGenerator->words(100, 300));
+        $contribution .= $this->frontElements->highlight($this->fakerGenerator->words(30, 100), $this->fakerGenerator->words(100, 300));
+
+        $head = [];
+        $body = [];
+        $nbCells = rand(3, 6);
+        $nbLines = rand(3, 6);
+
+        for($i = 0; $i <= $nbCells; $i++)
+        {
+            array_push($head, $this->fakerGenerator->words(30, 100));
+        }
+
+        for($i = 0; $i <= $nbLines; $i++)
+        {
+            for($y = 0; $y <= $nbCells; $y++)
+            {
+                array_push($body, $this->fakerGenerator->words(30, 100));
+            }
+        }
+
+        $contribution .= $this->frontElements->title('Tableau de base', $titleScope[0]);
+        $contribution .= $this->frontElements->table($head, $body);
+
+        $contribution .= $this->frontElements->title('Tableau simple', $titleScope[0]);
+        $contribution .= $this->frontElements->table($head, $body, 'table-simple');
+
+        $contribution .= $this->frontElements->title('Inser photo 100%', $titleScope[0]);
+        $contribution .= $this->frontElements->image($this->fakerGenerator->images(900, 600), '', $this->fakerGenerator->words(30, 100));
+
         return $contribution;
     }
 }

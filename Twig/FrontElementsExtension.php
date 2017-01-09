@@ -23,6 +23,10 @@ class FrontElementsExtension extends \Twig_Extension
             new \Twig_SimpleFunction('button', array($this, 'button')),
             new \Twig_SimpleFunction('quotation', array($this, 'quotation')),
             new \Twig_SimpleFunction('liste', array($this, 'liste')),
+            new \Twig_SimpleFunction('accordion', array($this, 'accordion')),
+            new \Twig_SimpleFunction('highlight', array($this, 'highlight')),
+            new \Twig_SimpleFunction('table', array($this, 'table')),
+            new \Twig_SimpleFunction('image', array($this, 'image')),
         );
     }
 
@@ -77,6 +81,11 @@ class FrontElementsExtension extends \Twig_Extension
         return $quotation;
     }
 
+    /**
+     * @param string $type
+     * @param array $elements
+     * @return string
+     */
     public function liste($type = 'ul', $elements)
     {
         $liste = "<$type>";
@@ -88,5 +97,99 @@ class FrontElementsExtension extends \Twig_Extension
         $liste .= "</$type>";
 
         return $liste;
+    }
+
+    /**
+     * @param string $title
+     * @param string $content
+     * @return string
+     */
+    public function accordion($title, $content)
+    {
+        $accordion = '<div class="article_accordion">';
+
+        $accordion .= "<div class=\"article_accordion_title\">$title</div>";
+        $accordion .= "<div class=\"article_accordion_content\">$content</div>";
+
+        $accordion .= '</div>';
+
+        return $accordion;
+    }
+
+    /**
+     * @param string $title
+     * @param string $content
+     * @return string
+     */
+    public function highlight($title, $content)
+    {
+        $highlight = '<div class="article_highlight">';
+
+        $highlight .= "<div class=\"article_highlight_title\">$title</div>";
+        $highlight .= "<div class=\"article_highlight_content\">$content</div>";
+
+        $highlight .= '</div>';
+
+        return $highlight;
+    }
+
+
+    /**
+     * @param array $headLines
+     * @param array $bodyLines
+     * @param string $class
+     * @return string
+     */
+    public function table($headLines, $bodyLines, $class = '')
+    {
+        $table = "<table class=\"$class\">";
+
+        if( !empty($headLines) )
+        {
+            $table .= '<thead>';
+            $table .= '<tr>';
+
+            foreach($headLines as $line)
+            {
+                $table .= "<td>$line</td>";
+            }
+
+            $table .= '</tr>';
+            $table .= '</thead>';
+        }
+
+        $table .= '<tbody>';
+        foreach($bodyLines as $line)
+        {
+            $table .= '<tr>';
+
+            foreach($line as $cell)
+            {
+                $table .= "<td>$cell</td>";
+            }
+
+            $table .= '</tr>';
+        }
+        $table .= '</tbody>';
+
+        $table .= '</table>';
+
+        return $table;
+    }
+
+    public function image($url, $alt, $legend)
+    {
+        $image = '<div class="article_image">';
+
+        $image .= "<img src='$url' alt='$alt'/>";
+
+        if( !empty($legend) )
+        {
+            $image .= "<div class=\"article_image_legend\">$legend</div>";
+        }
+
+        $image .= '</div>';
+
+        return $image;
     }
 }

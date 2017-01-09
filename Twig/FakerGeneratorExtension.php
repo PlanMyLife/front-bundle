@@ -30,7 +30,7 @@ class FakerGeneratorExtension extends \Twig_Extension
             new \Twig_SimpleFunction('address', array($this, 'address')),
             new \Twig_SimpleFunction('country', array($this, 'country')),
             new \Twig_SimpleFunction('city', array($this, 'city')),
-            new \Twig_SimpleFunction('image', array($this, 'images'))
+            new \Twig_SimpleFunction('fake_image', array($this, 'images'))
         );
     }
 
@@ -86,7 +86,7 @@ class FakerGeneratorExtension extends \Twig_Extension
     /**
      * @param $width
      * @param $height
-     * @param bool $theme
+     * @param string $theme
      * @return mixed
      */
     public function images($width, $height, $theme = 'cats')
