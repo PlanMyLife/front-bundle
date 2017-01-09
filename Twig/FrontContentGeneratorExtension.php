@@ -100,7 +100,10 @@ class FrontContentGeneratorExtension extends \Twig_Extension
         $contribution .= $this->frontElements->liste('ul', $liste);
         $contribution .= $this->frontElements->liste('ol', $liste);
 
+        $contribution .= $this->frontElements->title('Accordion', $titleScope[0]);
         $contribution .= $this->frontElements->accordion($this->fakerGenerator->words(30, 100), $this->fakerGenerator->words(100, 300));
+
+        $contribution .= $this->frontElements->title('Highlight', $titleScope[0]);
         $contribution .= $this->frontElements->highlight($this->fakerGenerator->words(30, 100), $this->fakerGenerator->words(100, 300));
 
         $head = [];
@@ -115,10 +118,14 @@ class FrontContentGeneratorExtension extends \Twig_Extension
 
         for($i = 0; $i <= $nbLines; $i++)
         {
+            $line = [];
+
             for($y = 0; $y <= $nbCells; $y++)
             {
-                array_push($body, $this->fakerGenerator->words(30, 100));
+                array_push($line, $this->fakerGenerator->words(30, 100));
             }
+
+            array_push($body, $line);
         }
 
         $contribution .= $this->frontElements->title('Tableau de base', $titleScope[0]);
