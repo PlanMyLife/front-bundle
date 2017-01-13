@@ -3,7 +3,7 @@
 }
 
 // Generate the extra small columns
-@mixin make-xs-column($columns, $gutter: $grid-gutter-width) {
+@mixin make-xs-column($columns, $gutter: $grid-padding) {
   flex-basis: percentage(($columns / $grid-columns));
   min-height: 1px;
   padding-left:  em($gutter / 2);
@@ -15,7 +15,7 @@
 }
 
 // Generate the small columns
-@mixin make-sm-column($columns, $gutter: $grid-gutter-width) {
+@mixin make-sm-column($columns, $gutter: $grid-padding) {
   min-height: 1px;
   padding-left:  em($gutter / 2);
   padding-right: em($gutter / 2);
@@ -32,7 +32,7 @@
 }
 
 // Generate the medium columns
-@mixin make-md-column($columns, $gutter: $grid-gutter-width) {
+@mixin make-md-column($columns, $gutter: $grid-padding) {
   min-height: 1px;
   padding-left:  em($gutter);
   padding-right: em($gutter);
@@ -49,7 +49,7 @@
 }
 
 // Generate the large columns
-@mixin make-lg-column($columns, $gutter: $grid-gutter-width) {
+@mixin make-lg-column($columns, $gutter: $grid-padding) {
   min-height: 1px;
   padding-left:  em($gutter);
   padding-right: em($gutter);
@@ -66,7 +66,7 @@
 }
 
 // Generate the extra large columns
-@mixin make-xlg-column($columns, $gutter: $grid-gutter-width) {
+@mixin make-xlg-column($columns, $gutter: $grid-padding) {
   min-height: 1px;
   padding-left:  em($gutter);
   padding-right: em($gutter);
