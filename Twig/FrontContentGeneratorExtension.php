@@ -88,7 +88,7 @@ class FrontContentGeneratorExtension extends \Twig_Extension
         $contribution .= $this->frontElements->button('#', $this->fakerGenerator->words(20, 50));
         $contribution .= '</p>';
 
-        $contribution .= $this->fakerGenerator->words(50, 100);
+        $contribution .= '<p>' . $this->fakerGenerator->words(50, 100) . '</p>';
 
         $contribution .= $this->frontElements->quotation($this->fakerGenerator->words(50, 150), $this->fakerGenerator->name());
 
@@ -97,7 +97,10 @@ class FrontContentGeneratorExtension extends \Twig_Extension
             array_push($liste, $this->fakerGenerator->words(50, 100));
         }
 
+        $contribution .= '<p><strong>Liste à puce</strong></p>';
         $contribution .= $this->frontElements->liste('ul', $liste);
+
+        $contribution .= '<p><strong>Liste numérotée</strong></p>';
         $contribution .= $this->frontElements->liste('ol', $liste);
 
         $contribution .= $this->frontElements->title('Accordion', $titleScope[0]);
