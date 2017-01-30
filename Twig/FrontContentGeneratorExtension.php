@@ -94,7 +94,7 @@ class FrontContentGeneratorExtension extends \Twig_Extension
 
         $liste = [];
         for ($i = 0; $i < rand(3, 6); $i++) {
-            array_push($liste, $this->fakerGenerator->words(50, 100));
+            array_push($liste, $this->fakerGenerator->words(50, 200));
         }
 
         $contribution .= '<p><strong>Liste à puce</strong></p>';
@@ -105,25 +105,27 @@ class FrontContentGeneratorExtension extends \Twig_Extension
 
         $contribution .= $this->frontElements->title('Accordion', $titleScope[0]);
         $contribution .= $this->frontElements->accordion($this->fakerGenerator->words(30, 100), $this->fakerGenerator->words(100, 300));
+        $contribution .= $this->frontElements->accordion($this->fakerGenerator->words(30, 100), $this->fakerGenerator->words(100, 300));
+        $contribution .= $this->frontElements->accordion($this->fakerGenerator->words(30, 100), $this->fakerGenerator->words(100, 300));
 
         $contribution .= $this->frontElements->title('Highlight', $titleScope[0]);
         $contribution .= $this->frontElements->highlight($this->fakerGenerator->words(30, 100), $this->fakerGenerator->words(100, 300));
 
         $head = [];
         $body = [];
-        $nbCells = rand(3, 6);
-        $nbLines = rand(3, 6);
+        $nbCells = rand(3, 5);
+        $nbLines = rand(2, 4);
 
-        for($i = 0; $i <= $nbCells; $i++)
+        for($i = 0; $i < $nbCells; $i++)
         {
             array_push($head, $this->fakerGenerator->words(30, 100));
         }
 
-        for($i = 0; $i <= $nbLines; $i++)
+        for($i = 0; $i < $nbLines; $i++)
         {
             $line = [];
 
-            for($y = 0; $y <= $nbCells; $y++)
+            for($y = 0; $y < $nbCells; $y++)
             {
                 array_push($line, $this->fakerGenerator->words(30, 100));
             }

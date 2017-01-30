@@ -15,8 +15,8 @@
   @if ($type == width) and ($index > 0) {
     .col-#{$class}-#{$index} {
       flex-basis: percentage(($index / $grid-columns));
-      padding-left: rem($grid-gutter-width / 2);
-      padding-right: rem($grid-gutter-width / 2);
+      padding-left: rem($grid-padding / 2);
+      padding-right: rem($grid-padding / 2);
     }
   }
   @if ($type == push) and ($index > 0) {

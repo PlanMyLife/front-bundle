@@ -51,17 +51,18 @@ class FrontElementsExtension extends \Twig_Extension
 
         $classname = $class ? 'class="' . implode(' ', $class) . '"' : '';
 
-        return '<a href="' . $link . '" ' . $classname . '>' . $content . '</a>';
+        return '<a href="' . $link . '" ' . $classname . '><span>' . $content . '</span></a>';
     }
 
     /**
      * @param string $link
      * @param string $content
+     * @param array $class
      * @return string
      */
-    public function button($link, $content)
+    public function button($link, $content, $class = [])
     {
-        return $this->link($link, $content, ['btn']);
+        return $this->link($link, $content, array_merge(['btn'], $class));
     }
 
     /**
@@ -73,7 +74,7 @@ class FrontElementsExtension extends \Twig_Extension
     {
         $quotation = '<div class="article_quotation">';
 
-        $quotation .= "<p class=\"article_quotation_text\">$quote</p>";
+        $quotation .= "<p class=\"article_quotation_text\">« $quote »</p>";
         $quotation .= "<p class=\"article_quotation_author\">$author</p>";
 
         $quotation .= '</div>';
@@ -142,7 +143,7 @@ class FrontElementsExtension extends \Twig_Extension
      */
     public function table($headLines, $bodyLines, $class = '')
     {
-        $table = "<table class=\"$class\">";
+        $table = "<div class='table-container'><table class=\"$class\">";
 
         if( !empty($headLines) )
         {
@@ -151,7 +152,7 @@ class FrontElementsExtension extends \Twig_Extension
 
             foreach($headLines as $line)
             {
-                $table .= "<td>$line</td>";
+                $table .= "<th>$line</th>";
             }
 
             $table .= '</tr>';
@@ -172,7 +173,7 @@ class FrontElementsExtension extends \Twig_Extension
         }
         $table .= '</tbody>';
 
-        $table .= '</table>';
+        $table .= '</table></div>';
 
         return $table;
     }

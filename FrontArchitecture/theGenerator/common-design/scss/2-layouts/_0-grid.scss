@@ -5,13 +5,13 @@
   box-sizing: border-box;
 
   @include mq($from: mobile) {
-    padding-left: rem($grid-gutter-width);
-    padding-right: rem($grid-gutter-width);
+    padding-left: rem($grid-padding);
+    padding-right: rem($grid-padding);
   }
 
   @include mq($until: mobile) {
-    padding-left: rem($grid-gutter-width-mobile);
-    padding-right: rem($grid-gutter-width-mobile);
+    padding-left: rem($grid-padding-mobile);
+    padding-right: rem($grid-padding-mobile);
   }
 
   &-padding {
@@ -31,12 +31,12 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  margin-left: rem(-$grid-gutter-width / 2);
-  margin-right: rem(-$grid-gutter-width / 2);
+  margin-left: rem(-$grid-padding / 2);
+  margin-right: rem(-$grid-padding / 2);
 
   .col {
-    padding-left:  rem( ceil(($grid-gutter-width / 2)) );
-    padding-right: rem( floor(($grid-gutter-width / 2)) );
+    padding-left:  rem( ceil(($grid-padding / 2)) );
+    padding-right: rem( floor(($grid-padding / 2)) );
   }
 }
 
