@@ -18,15 +18,15 @@ class FrontElementsExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('title', array($this, 'title')),
-            new \Twig_SimpleFunction('link', array($this, 'link')),
-            new \Twig_SimpleFunction('button', array($this, 'button')),
-            new \Twig_SimpleFunction('quotation', array($this, 'quotation')),
-            new \Twig_SimpleFunction('liste', array($this, 'liste')),
-            new \Twig_SimpleFunction('accordion', array($this, 'accordion')),
-            new \Twig_SimpleFunction('highlight', array($this, 'highlight')),
-            new \Twig_SimpleFunction('table', array($this, 'table')),
-            new \Twig_SimpleFunction('image', array($this, 'image')),
+            new \Twig_SimpleFunction('title', array($this, 'title'), array('is_safe' => array('all'))),
+            new \Twig_SimpleFunction('link', array($this, 'link'), array('is_safe' => array('all'))),
+            new \Twig_SimpleFunction('button', array($this, 'button'), array('is_safe' => array('all'))),
+            new \Twig_SimpleFunction('quotation', array($this, 'quotation'), array('is_safe' => array('all'))),
+            new \Twig_SimpleFunction('liste', array($this, 'liste'), array('is_safe' => array('all'))),
+            new \Twig_SimpleFunction('accordion', array($this, 'accordion')), array('is_safe' => array('all')),
+            new \Twig_SimpleFunction('highlight', array($this, 'highlight'), array('is_safe' => array('all'))),
+            new \Twig_SimpleFunction('table', array($this, 'table'), array('is_safe' => array('all'))),
+            new \Twig_SimpleFunction('image', array($this, 'image'), array('is_safe' => array('all'))),
         );
     }
 
