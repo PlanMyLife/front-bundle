@@ -27,6 +27,8 @@ class FakerGeneratorExtension extends \Twig_Extension
         return array(
             new \Twig_SimpleFunction('words', array($this, 'words')),
             new \Twig_SimpleFunction('name', array($this, 'name')),
+            new \Twig_SimpleFunction('email', array($this, 'email')),
+            new \Twig_SimpleFunction('phone', array($this, 'phone')),
             new \Twig_SimpleFunction('address', array($this, 'address')),
             new \Twig_SimpleFunction('country', array($this, 'country')),
             new \Twig_SimpleFunction('city', array($this, 'city')),
@@ -48,12 +50,30 @@ class FakerGeneratorExtension extends \Twig_Extension
     }
 
     /**
-     * @param $lang
-     * @return string
-     */
+ * @param $lang
+ * @return string
+ */
     public function name($lang = 'fr_FR')
     {
         return $this->faker($lang)->firstName() . ' ' . $this->faker($lang)->lastName();
+    }
+
+    /**
+     * @param $lang
+     * @return string
+     */
+    public function email($lang = 'fr_FR')
+    {
+        return $this->faker($lang)->freeEmail();
+    }
+
+    /**
+     * @param $lang
+     * @return string
+     */
+    public function phone($lang = 'fr_FR')
+    {
+        return $this->faker($lang)->phoneNumber();
     }
 
     /**
