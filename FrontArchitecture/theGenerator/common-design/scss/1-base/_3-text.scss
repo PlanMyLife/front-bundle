@@ -1,14 +1,14 @@
 .text {
   &-small {
-    font-size: em($text-small);
+    font-size: em($text-small-fs);
   }
 
   &-big {
-    font-size: em($text-big);
+    font-size: em($text-big-fs);
   }
 
   &-extra-big {
-    font-size: em($text-extra-big);
+    font-size: em($text-extra-big-fs);
   }
 
   &-uppercase {
@@ -31,15 +31,15 @@
 p {
   &.text {
     &-small {
-      @include paragraph(1, $text-small);
+      @include paragraph(1, $text-small-fs);
     }
 
     &-big {
-      @include paragraph(1, $text-big);
+      @include paragraph(1, $text-big-fs);
     }
 
     &-extra-big {
-      @include paragraph(1, $text-extra-big);
+      @include paragraph(1, $text-extra-big-fs);
     }
   }
 }

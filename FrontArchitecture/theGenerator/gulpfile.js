@@ -302,25 +302,29 @@ function buildTask(path, build) {
 }
 
 gulp.task( 'watch', function () {
-	if(argv.path !== 'undefined') {
-		runner( 'clean', function() {
-			if( typeof argv.path === 'object') {
-				argv.path.forEach( function(path){
-					buildTask(path, false);
-				});
-			} else {
-				buildTask(argv.path, false);
-			}
-
-			W.forEach( function ( obj ) {
-				gulp.watch( obj.files, obj.tasks );
+	if(argv.path !== undefined) {
+		if( typeof argv.path === 'object') {
+			argv.path.forEach( function(path){
+				buildTask(path, false);
 			});
-		} );
+		} else {
+			buildTask(argv.path, false);
+		}
+
+		W.forEach( function ( obj ) {
+			gulp.watch( obj.files, obj.tasks );
+		});
+	} else {
+		buildTask(source, true);
+
+		W.forEach( function ( obj ) {
+			gulp.watch( obj.files, obj.tasks );
+		});
 	}
 });
 
 gulp.task( 'build', function () {
-	if(argv.path !== 'undefined') {
+	if(argv.path !== undefined) {
 		if( typeof argv.path === 'object') {
 			argv.path.forEach( function(path){
 				buildTask(path, true);
@@ -328,5 +332,8 @@ gulp.task( 'build', function () {
 		} else {
 			buildTask(argv.path, true);
 		}
+	} else {
+		buildTask(source, true);
 	}
 });
+
