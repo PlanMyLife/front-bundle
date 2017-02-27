@@ -39,7 +39,7 @@ var source = 'src/'; // dossier de travail
 var destination = 'web/'; // dossier à livrer
 
 var ENV = {
-	config: './gulp-config/',
+	config: './common-design/gulp-config/',
 	all: {
 		optimise: true,
 		relax: false
@@ -163,9 +163,41 @@ gulp.task( 'js:generic', function () {
 });
 
 gulp.task( 'js:pages', function () {
-	return gulp.src( SRC.js.pages )
-		.pipe( babel({presets: ['es2015']}) )
-		.pipe( gulp.dest( DEST.js + '/pages' ) );
+	var buildStream = through();
+
+	/*buildStream
+	 .pipe( buffer() )
+	 .pipe( gulp.dest( DEST.js + '/pages' ) );*/
+
+	return glob( SRC.js.pages, {}, function ( err, files ) {
+		if ( err ) {
+			console.log( 'error', err );
+			return;
+		}
+
+		for (let i = 0; i < files.length; i++) {
+			let  buildStream = through();
+
+			buildStream
+				.pipe( vinylSource( path.basename(files[i]) ) )
+				.pipe( buffer() )
+				.pipe( sourcemap.init({loadMaps: true}) )
+				.pipe( gif( ENV.all.optimize, uglify() ) )
+				.pipe( sourcemap.write( '.' ) )
+				.pipe( gulp.dest( DEST.js + '/pages' ) );
+
+			let b = browserify({
+				entries: files[i],
+				debug: true/*,
+				 transform: [babelify]*/
+			});
+
+			b.transform( babelify, {
+				presets: ['es2015']
+			}).bundle()
+				.pipe( buildStream );
+		}
+	});
 });
 
 gulp.task( 'iconfont', function () {
