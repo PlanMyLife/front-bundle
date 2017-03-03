@@ -33,7 +33,7 @@ class InstallAssetsCommand extends ContainerAwareCommand
 
         if (strpos(shell_exec('bundle check'), 'Install missing gems with `bundle install')) {
             $output->writeln('The ruby ​​dependencies are not up to date, bundle execution install');
-            passthru('bundle install --path=../.vendor/bundles');
+            passthru('bundle install --path=./.vendor/bundles');
         }
 
         $output->writeln('Cleaning...');
