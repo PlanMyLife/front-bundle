@@ -36,6 +36,9 @@ class InstallAssetsCommand extends ContainerAwareCommand
             passthru('bundle install --path=./.vendor/bundles');
         }
 
+        $output->writeln('Check and install npm missing dependencies');
+        passthru('npm install');
+
         $output->writeln('Cleaning...');
         passthru('gulp clean');
 
