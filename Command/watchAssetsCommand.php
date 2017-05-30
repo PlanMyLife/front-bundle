@@ -42,6 +42,7 @@ class watchAssetsCommand extends ContainerAwareCommand
         foreach ($bundles as $bundle) {
             if ($bundle['name'] == $input->getArgument('name')) {
                 $task = ' --path ' . $bundle['src'];
+                $task .= ' --name ' . $bundle['name'];
 
                 passthru('gulp watch' . $task);
             }

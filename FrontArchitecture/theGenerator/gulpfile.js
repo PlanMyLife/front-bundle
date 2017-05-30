@@ -288,7 +288,7 @@ function buildTask(path, build) {
 
 	source = path;
 
-	if(argv.name !== 'undefined') {
+	if(argv.name !== undefined) {
 		name = argv.name;
 	}
 
