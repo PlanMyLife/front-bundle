@@ -1,10 +1,11 @@
 <?php
 namespace PlanMyLife\FrontBundle\Command;
 
+use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputInterface;
 
-class InstallAssetsCommand extends Command
+class InstallAssetsCommand extends ContainerAwareCommand
 {
     /**
      * {@inheritdoc}
@@ -55,5 +56,15 @@ class InstallAssetsCommand extends Command
 
             passthru('gulp build' . $task);
         }
+    }
+
+    /**
+     * @param $cmd
+     *
+     * @return bool
+     */
+    protected function commandExist($cmd)
+    {
+        return (empty(shell_exec("which $cmd")) ? false : true);
     }
 }

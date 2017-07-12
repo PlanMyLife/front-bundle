@@ -2,11 +2,12 @@
 
 namespace PlanMyLife\FrontBundle\Command;
 
+use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 
-class WatchAssetsCommand extends Command
+class WatchAssetsCommand extends ContainerAwareCommand
 {
     /**
      * {@inheritdoc}
@@ -52,5 +53,15 @@ class WatchAssetsCommand extends Command
                 passthru(sprintf('gulp watch %s', $task));
             }
         }
+    }
+
+    /**
+     * @param $cmd
+     *
+     * @return bool
+     */
+    protected function commandExist($cmd)
+    {
+        return (empty(shell_exec("which $cmd")) ? false : true);
     }
 }
