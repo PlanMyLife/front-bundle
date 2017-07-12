@@ -1,12 +1,14 @@
 <?php
 namespace PlanMyLife\FrontBundle\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Input\InputInterface;
 
-class InstallAssetsCommand extends ContainerAwareCommand
+class InstallAssetsCommand extends Command
 {
+    /**
+     * {@inheritdoc}
+     */
     protected function configure()
     {
         $this->setName('front:install')
@@ -15,6 +17,9 @@ class InstallAssetsCommand extends ContainerAwareCommand
         ;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $container = $this->getContainer();
@@ -23,11 +28,11 @@ class InstallAssetsCommand extends ContainerAwareCommand
             return $output->writeln('You must define the folders to be compiled in config.yml');
         }
 
-        if (!$this->command_exist('bundle')) {
+        if (!$this->commandExist('bundle')) {
             return $output->writeln('Bundle (http://bundler.io/) is required for this project.');
         }
 
-        if (!$this->command_exist('npm')) {
+        if (!$this->commandExist('npm')) {
             return $output->writeln('Npm (https://www.npmjs.com/) is required for this project.');
         }
 
@@ -50,10 +55,5 @@ class InstallAssetsCommand extends ContainerAwareCommand
 
             passthru('gulp build' . $task);
         }
-    }
-
-    private function command_exist($cmd)
-    {
-        return (empty(shell_exec("which $cmd")) ? false : true);
     }
 }

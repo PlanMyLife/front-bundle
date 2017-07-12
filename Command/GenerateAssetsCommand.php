@@ -2,12 +2,14 @@
 
 namespace PlanMyLife\FrontBundle\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Input\InputInterface;
 
-class GenerateAssetsCommand extends ContainerAwareCommand
+class GenerateAssetsCommand extends Command
 {
+    /**
+     * {@inheritdoc}
+     */
     protected function configure()
     {
         $this->setName('front:generate')
@@ -16,6 +18,9 @@ class GenerateAssetsCommand extends ContainerAwareCommand
         ;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $container = $this->getContainer();
@@ -86,49 +91,5 @@ class GenerateAssetsCommand extends ContainerAwareCommand
         $output->writeln('-----------------------------------');
         $output->writeln('Your projet is ready to be compiled');
         $output->writeln('run the install command : console front:install');
-    }
-
-    /**
-     * Copy a file, or recursively copy a folder and its contents
-     * @author      Aidan Lister <aidan@php.net>
-     * @version     1.0.1
-     * @link        http://aidanlister.com/2004/04/recursively-copying-directories-in-php/
-     * @param       string   $source    Source path
-     * @param       string   $dest      Destination path
-     * @param       int      $permissions New folder creation permissions
-     * @return      bool     Returns true on success, false on failure
-     */
-    protected function xcopy($source, $dest, $permissions = 0755)
-    {
-        // Check for symlinks
-        if (is_link($source)) {
-            return symlink(readlink($source), $dest);
-        }
-
-        // Simple copy for a file
-        if (is_file($source)) {
-            return copy($source, $dest);
-        }
-
-        // Make destination directory
-        if (!is_dir($dest)) {
-            mkdir($dest, $permissions);
-        }
-
-        // Loop through the folder
-        $dir = dir($source);
-        while (false !== $entry = $dir->read()) {
-            // Skip pointers
-            if ($entry == '.' || $entry == '..') {
-                continue;
-            }
-
-            // Deep copy directories
-            $this->xcopy("$source/$entry", "$dest/$entry", $permissions);
-        }
-
-        // Clean up
-        $dir->close();
-        return true;
     }
 }
