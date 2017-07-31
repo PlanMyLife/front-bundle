@@ -1,5 +1,7 @@
 # Plan My Life Front Bundle
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/b0a6096a-c7e3-4ecc-8894-bbdea5ee8759/mini.png)](https://insight.sensiolabs.com/projects/b0a6096a-c7e3-4ecc-8894-bbdea5ee8759)
+
 ## Introduction
 
 This bundle allow you to **install a gulp compilator** for your assets and **add to your symfony's console** some functions to execute gulp tasks.
