@@ -14,14 +14,6 @@ class FakerGeneratorExtension extends \Twig_Extension
     /**
      * {@inheritdoc}
      */
-    public function getName()
-    {
-        return 'planmylife_words_twig_extension';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getFunctions()
     {
         return array(
@@ -129,5 +121,13 @@ class FakerGeneratorExtension extends \Twig_Extension
         }
 
         return $this->fakers[$lang];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getName()
+    {
+        return 'planmylife_words_twig_extension';
     }
 }

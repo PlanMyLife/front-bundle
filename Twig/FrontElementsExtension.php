@@ -7,14 +7,6 @@ class FrontElementsExtension extends \Twig_Extension
     /**
      * {@inheritdoc}
      */
-    public function getName()
-    {
-        return 'planmylife_front_elements_twig_extension';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getFunctions()
     {
         return array(
@@ -43,7 +35,8 @@ class FrontElementsExtension extends \Twig_Extension
     /**
      * @param string $link
      * @param string $content
-     * @param array $class
+     * @param bool $class
+     *
      * @return string
      */
     public function link($link, $content, $class = false)
@@ -192,5 +185,13 @@ class FrontElementsExtension extends \Twig_Extension
         $image .= '</div>';
 
         return $image;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getName()
+    {
+        return 'planmylife_front_elements_twig_extension';
     }
 }

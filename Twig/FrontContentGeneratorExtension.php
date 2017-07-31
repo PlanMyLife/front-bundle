@@ -6,18 +6,15 @@ use Faker;
 
 class FrontContentGeneratorExtension extends \Twig_Extension
 {
-    /**
-     * @var FakerGeneratorExtension
-     */
+    /** @var FakerGeneratorExtension */
     private $fakerGenerator;
 
-    /**
-     * @var FrontElementsExtension
-     */
+    /** @var FrontElementsExtension */
     private $frontElements;
 
     /**
      * FrontContentGeneratorExtension constructor.
+     *
      * @param FakerGeneratorExtension $wordsGenerator
      * @param FrontElementsExtension $frontElements
      */
@@ -30,32 +27,25 @@ class FrontContentGeneratorExtension extends \Twig_Extension
     /**
      * {@inheritdoc}
      */
-    public function getName()
-    {
-        return 'planmylife_front_twig_extension';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getFunctions()
     {
         return array (
-            new \Twig_SimpleFunction('fake_contribution', array($this, 'fake_contribution')),
+            new \Twig_SimpleFunction('fake_contribution', array($this, 'fakeContribution')),
         );
     }
 
     /**
      * @param bool $long
      * @param array $titleScope
+     *
      * @return string
      */
-    public function fake_contribution($long = false, $titleScope = [1, 6])
+    public function fakeContribution($long = false, $titleScope = [1, 6])
     {
         $contribution = '';
 
         for ($i = $titleScope[0]; $i <= $titleScope[1]; $i++) {
-            $contribution .= $this->frontElements->title( 'H' . $i . ' - ' .$this->fakerGenerator->words(50, 150), $i );
+            $contribution .= $this->frontElements->title('H' . $i . ' - ' .$this->fakerGenerator->words(50, 150), $i);
 
             $contribution .= '<p>' . $this->fakerGenerator->words(100, 200) . '</p>';
 
@@ -93,7 +83,8 @@ class FrontContentGeneratorExtension extends \Twig_Extension
         $contribution .= $this->frontElements->quotation($this->fakerGenerator->words(50, 150), $this->fakerGenerator->name());
 
         $liste = [];
-        for ($i = 0; $i < rand(3, 6); $i++) {
+        $rand = rand(3, 6);
+        for ($i = 0; $i < $rand; $i++) {
             array_push($liste, $this->fakerGenerator->words(50, 200));
         }
 
@@ -104,12 +95,20 @@ class FrontContentGeneratorExtension extends \Twig_Extension
         $contribution .= $this->frontElements->liste('ol', $liste);
 
         $contribution .= $this->frontElements->title('Accordion', $titleScope[0]);
-        $contribution .= $this->frontElements->accordion($this->fakerGenerator->words(30, 100), $this->fakerGenerator->words(100, 300));
-        $contribution .= $this->frontElements->accordion($this->fakerGenerator->words(30, 100), $this->fakerGenerator->words(100, 300));
-        $contribution .= $this->frontElements->accordion($this->fakerGenerator->words(30, 100), $this->fakerGenerator->words(100, 300));
+        $contribution .= $this->frontElements->accordion(
+            $this->fakerGenerator->words(30, 100), $this->fakerGenerator->words(100, 300)
+        );
+        $contribution .= $this->frontElements->accordion(
+            $this->fakerGenerator->words(30, 100), $this->fakerGenerator->words(100, 300)
+        );
+        $contribution .= $this->frontElements->accordion(
+            $this->fakerGenerator->words(30, 100), $this->fakerGenerator->words(100, 300)
+        );
 
         $contribution .= $this->frontElements->title('Highlight', $titleScope[0]);
-        $contribution .= $this->frontElements->highlight($this->fakerGenerator->words(30, 100), $this->fakerGenerator->words(100, 300));
+        $contribution .= $this->frontElements->highlight(
+            $this->fakerGenerator->words(30, 100), $this->fakerGenerator->words(100, 300)
+        );
 
         $head = [];
         $body = [];
@@ -140,8 +139,20 @@ class FrontContentGeneratorExtension extends \Twig_Extension
         $contribution .= $this->frontElements->table($head, $body, 'table-simple');
 
         $contribution .= $this->frontElements->title('Inser photo 100%', $titleScope[0]);
-        $contribution .= $this->frontElements->image($this->fakerGenerator->images(900, 600), '', $this->fakerGenerator->words(30, 100));
+        $contribution .= $this->frontElements->image(
+            $this->fakerGenerator->images(900, 600),
+            '',
+            $this->fakerGenerator->words(30, 100)
+        );
 
         return $contribution;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getName()
+    {
+        return 'planmylife_front_twig_extension';
     }
 }
