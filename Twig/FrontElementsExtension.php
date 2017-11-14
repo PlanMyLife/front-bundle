@@ -15,7 +15,7 @@ class FrontElementsExtension extends \Twig_Extension
             new \Twig_SimpleFunction('button', array($this, 'button'), array('is_safe' => array('all'))),
             new \Twig_SimpleFunction('quotation', array($this, 'quotation'), array('is_safe' => array('all'))),
             new \Twig_SimpleFunction('liste', array($this, 'liste'), array('is_safe' => array('all'))),
-            new \Twig_SimpleFunction('accordion', array($this, 'accordion')), array('is_safe' => array('all')),
+            new \Twig_SimpleFunction('accordion', array($this, 'accordion'), array('is_safe' => array('all'))),
             new \Twig_SimpleFunction('highlight', array($this, 'highlight'), array('is_safe' => array('all'))),
             new \Twig_SimpleFunction('table', array($this, 'table'), array('is_safe' => array('all'))),
             new \Twig_SimpleFunction('image', array($this, 'image'), array('is_safe' => array('all'))),
@@ -84,7 +84,7 @@ class FrontElementsExtension extends \Twig_Extension
     {
         $liste = "<$type>";
 
-        foreach($elements as $element) {
+        foreach ($elements as $element) {
             $liste .= "<li>$element</li>";
         }
 
@@ -138,13 +138,11 @@ class FrontElementsExtension extends \Twig_Extension
     {
         $table = "<div class='table-container'><table class=\"$class\">";
 
-        if( !empty($headLines) )
-        {
+        if (!empty($headLines)) {
             $table .= '<thead>';
             $table .= '<tr>';
 
-            foreach($headLines as $line)
-            {
+            foreach ($headLines as $line) {
                 $table .= "<th>$line</th>";
             }
 
@@ -153,12 +151,10 @@ class FrontElementsExtension extends \Twig_Extension
         }
 
         $table .= '<tbody>';
-        foreach($bodyLines as $line)
-        {
+        foreach ($bodyLines as $line) {
             $table .= '<tr>';
 
-            foreach($line as $cell)
-            {
+            foreach ($line as $cell) {
                 $table .= "<td>$cell</td>";
             }
 
@@ -167,6 +163,7 @@ class FrontElementsExtension extends \Twig_Extension
         $table .= '</tbody>';
 
         $table .= '</table></div>';
+
 
         return $table;
     }
@@ -177,8 +174,7 @@ class FrontElementsExtension extends \Twig_Extension
 
         $image .= "<img src='$url' alt='$alt'/>";
 
-        if( !empty($legend) )
-        {
+        if (!empty($legend)) {
             $image .= "<div class=\"article_image_legend\">$legend</div>";
         }
 
