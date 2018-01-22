@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "gsap": "^1.18.4",
-    "jquery": "^2.2.3",
+    "jquery": "^3.0.0",
     "pepjs": "^0.4.1"
   },
   "devDependencies": {
